@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
-
+<?import java.lang.*?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <Label fx:id="lblHeader" layoutX="131.0" layoutY="177.0" prefHeight="88.0" prefWidth="338.0" text="Programovanie v Jave" textAlignment="RIGHT" textFill="#000980">
+      <Label fx:id="lblHeader" alignment="TOP_LEFT" layoutX="111.0" layoutY="168.0" prefHeight="65.0" prefWidth="338.0"
+             text="Programovanie v Jave" textAlignment="RIGHT" textFill="#000980">
          <font>
             <Font name="SansSerif Regular" size="30.0" />
          </font></Label>
@@ -23,5 +22,28 @@
       <CheckBox fx:id="cbxMask" layoutX="316.0" layoutY="275.0" mnemonicParsing="false" onAction="#clickCbxMask" text="Mask" />
       <TextField fx:id="txtFourth" layoutX="403.0" layoutY="113.0" />
       <Button fx:id="btnChangeText" layoutX="448.0" layoutY="153.0" mnemonicParsing="false" onAction="#clickBtnChangeText" text="Get result" />
+      <RadioButton fx:id="rbtnSmall" layoutX="52.0" layoutY="284.0" mnemonicParsing="false" onAction="#clickRbtnSmall"
+                   text="Small text">
+         <toggleGroup>
+            <ToggleGroup fx:id="textSize"/>
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="rbtnLarge" layoutX="52.0" layoutY="247.0" mnemonicParsing="false" onAction="#clickRbtnLarge"
+                   text="Large text" toggleGroup="$textSize"/>
+      <ColorPicker fx:id="colorPicker" layoutX="233.0" layoutY="301.0" onAction="#pickColor"/>
+      <ChoiceBox fx:id="choiceBoxCountry" layoutX="37.0" layoutY="26.0" onAction="#clickChoiceBoxCountry"
+                 prefWidth="150.0">
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <String fx:value="Slovakia"/>
+               <String fx:value="Germany"/>
+               <String fx:value="Sweden"/>
+               <String fx:value="Denmark"/>
+               <String fx:value="France"/>
+               <String fx:value="Italy"/>
+            </FXCollections>
+         </items>
+      </ChoiceBox>
+      <Label fx:id="lblCountry" layoutX="210.0" layoutY="31.0" text="Label"/>
    </children>
 </Pane>

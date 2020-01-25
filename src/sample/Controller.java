@@ -1,19 +1,25 @@
 package sample;
 
 import javafx.event.ActionEvent;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 public class Controller {
     public Label lblHeader;
+    final Database database = new Database();
     public TextField txtFirst;
     public TextField txtSecond;
     public TextField txtThird;
     public TextField txtFourth;
     public CheckBox cbxText;
     public CheckBox cbxMask;
+    public Label lblCountry;
+    public RadioButton rbtnSmall;
+    public RadioButton rbtnLarge;
+    public ColorPicker colorPicker;
+    public ChoiceBox choiceBoxCountry;
+    private String oldText;
 
     public void clickBtnBlueText(javafx.event.ActionEvent actionEvent) {
         System.out.println("Blue");
@@ -41,12 +47,13 @@ public class Controller {
     }
 
     public void clickCbxMask(ActionEvent actionEvent) {
-        String oldText = lblHeader.getText();
-        System.out.println(oldText);
-        if (!cbxMask.isSelected()) {
-            lblHeader.setText(oldText);
-        } else {
+        if (cbxMask.isSelected()) {
+            oldText = lblHeader.getText();
             lblHeader.setText("...............");
+
+            System.out.println(oldText);
+        } else {
+            lblHeader.setText(oldText);
         }
     }
 
@@ -55,5 +62,31 @@ public class Controller {
         if (!nwTxt.equals("")){
             lblHeader.setText(nwTxt);
         }
+    }
+
+    public void clickRbtnSmall(ActionEvent actionEvent) {
+        if (rbtnSmall.isSelected()) {
+            lblHeader.setFont(new Font(30));
+        }
+    }
+
+    public void clickRbtnLarge(ActionEvent actionEvent) {
+        if (rbtnLarge.isSelected()) {
+            lblHeader.setFont(new Font(35));
+        }
+    }
+
+    public void pickColor(ActionEvent actionEvent) {
+        lblHeader.setTextFill(colorPicker.getValue());
+    }
+
+    public void clickChoiceBoxCountry(ActionEvent actionEvent) {
+        String country = (String) choiceBoxCountry.getValue();
+        try {
+            lblCountry.setText(database.getCapitalCity(country));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }
